@@ -1,0 +1,106 @@
+.home-wrapper {
+  position: relative;
+  height: 100vh;
+  background: #0e0e0e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Card com faixa branca no centro */
+.card {
+  background-color: #fff;
+  padding: 60px 40px;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  width: 600px;
+  max-width: 90%;
+  min-height: 700px;
+  background: #fff url('https://i.pinimg.com/736x/68/fe/1d/68fe1d298aa564f923b8052b5f753b2f.jpg');
+}
+
+.join {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 30px;
+}
+
+.titulo1 {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  top: 250px;
+  position: absolute;
+  color: #C084FC;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+  
+}
+
+.titulo1:hover {
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+  transform: scale(1.02);
+}
+
+.nome {
+  padding: 12px;
+  width: 17%;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: 0.3s;
+  position: absolute;
+  top: 510px;
+  border: 2px solid #C084FC ;
+}
+
+.nome:focus {
+  border-color: #444;
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(68, 68, 68, 0.6);
+  outline: none;
+}
+
+.entrar {
+  padding: 12px 20px;
+  width: 15%;
+  border-radius: 8px;
+  border: 2px solid #C084FC ;
+  background-color: #fff;
+  color: #000;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 600px;
+}
+
+.entrar:hover {
+  background-color: #000;
+  color: #fff;
+  box-shadow: 0 0 10px rgba(68, 68, 68, 0.4);
+  transform: scale(1.02);
+  border: 2px solid #444;
+}
+
+.furia-logo2 {
+  position: absolute;
+  top: 20px;
+  left: 80px;
+  width: 7%;
+  height: auto;
+  transition: transform 0.2s ease;
+  z-index: 2;
+}
+
+.furia-logo2:hover {
+  transform: scale(0.9);
+}

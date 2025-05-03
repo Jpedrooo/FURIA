@@ -1,0 +1,48 @@
+.titulo11 {
+    color: white;
+    position: absolute;
+    top: 40px;
+    left: 760px;
+    font-size: 50px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+    
+    transition: all 0.3s ease;
+    
+  }
+  .titulo11:hover{
+    -xpedu-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+  }
+
+  .furia-logoo {
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    width: 450px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+  }
+  
+  .furia-logoo:hover{
+    -xpedu-transform: scale(1.1);
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+  }
+
+
+.furia-logoo2{
+  top: 20px;
+  left: 80px;
+  position: absolute;
+  width: 7%;
+  height: auto;
+  transition: transform 0.2s ease
+}
+
+.furia-logoo2:hover{
+  transform: scale(0.9);
+}
+
+ 
