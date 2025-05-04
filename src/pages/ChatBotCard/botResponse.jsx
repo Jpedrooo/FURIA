@@ -182,6 +182,15 @@ const botResponses = [
   {
     question: "Quando FalleN estreou na FURIA?",
     response: "👑 FalleN estreou na FURIA em 2023, trazendo toda sua experiência e liderança para a nova geração!"
+  },
+  {
+    question: "Qual foi o ultimo jogo da FURIA?",
+    response: "Hoje dia 04/05/2025, o último jogo foi contra a The MongolZ, infelizmente perdemos de 2 a 0 😔. Se você está no futuro pode conferir isso aqui: 'https://www.hltv.org/team/8297/furia#tab-matchesBox'"
+  },
+  {
+    question: "Qual o próximo jogo da FURIA?",
+    response: "O próximo jogo da FURIA é dia 10/05/2025 contra a The MongolZ 💥🔥! Vai rolar pelo PGL Major Astana 2025 — promete ser pegado! 😤 Se você estiver vendo isso depois dessa data ou quiser os horários e detalhes certinhos, confere aqui: https://www.hltv.org/team/8297/furia#tab-matchesBox"
+
   }
 ];
 

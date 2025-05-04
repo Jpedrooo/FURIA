@@ -8,10 +8,28 @@ import botResponses from "./botResponse";
 import { askOpenAI } from "./openaiService";
 import Sidebar from "../ChatLegendaCard/LegendaCard";
 
+function formatMessage(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.split(urlRegex).map((part, i) =>
+    urlRegex.test(part) ? (
+      <a
+        key={i}
+        href={part}
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "blue", textDecoration: "underline" }}
+      >
+        {part}
+      </a>
+    ) : (
+      part
+    )
+  );
+}
 
 const fuse = new Fuse(botResponses, {
   keys: ["question"],
-  threshold: 0.3,
+  threshold: 0.4,
 });
 
 const ChatCard = () => {
@@ -29,8 +47,7 @@ const ChatCard = () => {
   const [historicoChat, setHistoricoChat] = useState([
     {
       role: "system",
-      content:
-        "Você é um bot da FURIA Esports, especialista em CS:GO. Responda de forma curta, divertida, cheia de emoção e com muitos emojis! Fale apenas sobre Counter-Strike, FURIA, seus jogadores, partidas e história. Use gírias de CS e Não responda sobre outros assuntos ou times.",
+      content: `Você é um bot da FURIA Esports, especialista em CS:GO. Responda de forma curta, divertida, com emoção e muitos emojis, sem imendar outras perguntas. Fale apenas sobre Counter-Strike, a FURIA, seus jogadores, partidas e história. Use gírias de CS. Não fale sobre outros times ou assuntos. Se o usuário perguntar sobre o placar do último jogo, line-up atual, próximos jogos, responda com: "Você pode conferir isso aqui: https://www.hltv.org/team/8297/furia ou verificar se exite uma mensagem pronta, no canto superior esquedo da tela!". responda tembem se você está tendo acesso as perguntas e respostas anteriores`,
     },
   ]);
 
@@ -38,36 +55,45 @@ const ChatCard = () => {
 
   const handleSend = async () => {
     if (textoInput.trim() === "") return;
-
+  
     const userMessage = { sender: "user", text: textoInput };
     setMensagens((prev) => [...prev, userMessage]);
     setTextoInput("");
-
+  
     setBotDigitando(true);
     setMensagens((prev) => [...prev, { sender: "bot", text: "Digitando..." }]);
-
+  
     setTimeout(async () => {
       setBotDigitando(false);
-
+  
       const result = fuse.search(textoInput.toLowerCase());
       let botResponse = "";
-
+  
       if (result.length > 0) {
         botResponse = result[0].item.response;
+      
+        // ATUALIZA o histórico mesmo com resposta pronta
+        setHistoricoChat((prev) => [
+          ...prev,
+          { role: "user", content: textoInput },
+          { role: "assistant", content: botResponse },
+        ]);
       } else {
         const updatedHistory = [
           ...historicoChat,
           { role: "user", content: textoInput },
         ];
-
+      
         botResponse = await askOpenAI(updatedHistory);
-
-        setHistoricoChat([
-          ...updatedHistory,
+      
+        setHistoricoChat((prev) => [
+          ...prev,
+          { role: "user", content: textoInput },
           { role: "assistant", content: botResponse },
         ]);
       }
-
+  
+      // Atualiza a lista de mensagens do chat visível
       setMensagens((prev) => {
         const novas = [...prev];
         novas.pop(); // Remove "Digitando..."
@@ -91,7 +117,9 @@ const ChatCard = () => {
         {mensagens.map((msg, index) => (
           <div
             key={index}
-            className={`chat-message ${msg.sender === "bot" ? "bot-message" : "user-message"}`}
+            className={`chat-message ${
+              msg.sender === "bot" ? "bot-message" : "user-message"
+            }`}
           >
             {msg.sender === "bot" && (
               <div className="avatar bot-avatar">
@@ -99,13 +127,17 @@ const ChatCard = () => {
               </div>
             )}
             <div className="message-content">
-              {msg.text}
-              {msg.text === "Digitando..." && (
-                <span className="typing-dots">
-                  <span>.</span>
-                  <span>.</span>
-                  <span>.</span>
-                </span>
+              {msg.text === "Digitando..." ? (
+                <>
+                  {msg.text}
+                  <span className="typing-dots">
+                    <span>.</span>
+                    <span>.</span>
+                    <span>.</span>
+                  </span>
+                </>
+              ) : (
+                formatMessage(msg.text)
               )}
             </div>
             {msg.sender === "user" && (
@@ -119,14 +151,14 @@ const ChatCard = () => {
       </div>
 
       <div className="chat-input-area">
-      <input
-        type="text"
-        placeholder="Digite sua mensagem..."
-        className="chat-input"
-        value={textoInput}
-        onChange={(e) => setTextoInput(e.target.value)}
-        onKeyDown={(e) => e.key === "Enter" && handleSend()}
-/>
+        <input
+          type="text"
+          placeholder="Digite sua mensagem..."
+          className="chat-input"
+          value={textoInput}
+          onChange={(e) => setTextoInput(e.target.value)}
+          onKeyDown={(e) => e.key === "Enter" && handleSend()}
+        />
         <button className="chat-send-button" onClick={handleSend}>
           Enviar
         </button>

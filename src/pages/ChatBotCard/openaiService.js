@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-const apiKey = "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";
+const apiKey = "COLOQUE AQUI A APIKEY";
 const apiUrl = "https://api.openai.com/v1/chat/completions";
 
 export async function askOpenAI(chatHistory) {
