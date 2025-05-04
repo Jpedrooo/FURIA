@@ -8,9 +8,8 @@
   overflow: hidden;
 }
 
-/* Card com faixa branca no centro */
+
 .card {
-  background-color: #fff;
   padding: 60px 40px;
   border-radius: 20px;
   box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);

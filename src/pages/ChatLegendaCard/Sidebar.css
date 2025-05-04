@@ -27,7 +27,7 @@
   transform: translateX(-100%);
   transition: transform 0.3s ease-in-out;
 
-  scrollbar-width: thin; /* Para Firefox */
+  scrollbar-width: thin; 
   scrollbar-color: #f0c040 #111;
 }
 
@@ -59,18 +59,18 @@
 
 .sidebar {
   position: fixed;
-  top: 70px; /* ajuste conforme seu layout */
+  top: 70px; 
   left: 0;
   width: 250px;
-  height: calc(100vh - 60px); /* altura da tela menos topo */
+  height: calc(100vh - 60px); 
   background-color: transparent;
-  overflow-y: auto; /* só a sidebar rola */
+  overflow-y: auto; 
   z-index: 1000;
   padding: 1rem;
   color: white;
 }
 
-/* Evita que o body role quando a sidebar estiver aberta */
+
 body.sidebar-aberta {
   overflow: hidden;
 }
@@ -86,7 +86,7 @@ body.sidebar-aberta {
 .sidebar::-webkit-scrollbar-thumb {
   background-color: #f0c040;
   border-radius: 4px;
-  border: 2px solid #111; /* deixa espaço entre thumb e track */
+  border: 2px solid #111; 
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
